@@ -12,11 +12,10 @@ const getWeather = (zipcode, countryCode) => {
     fetch(`http://api.openweathermap.org/geo/1.0/zip?zip=${zipcode},${countryCode}&appid=1eba33578583cc2cb757872032783084`)
     .then((response) => response.json())
     .then((json) => {
-        const { lat, lon } = json;
-        return { lat, lon };
+        const { lat, lon, name } = json;
+        postLocation(json.name);
+        return { lat, lon, name };
     }).then((coordinates) => {
-        console.log(coordinates.lat);
-        console.log(coordinates.lon);
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=1eba33578583cc2cb757872032783084&units=imperial`)
         .then((response) => response.json())
         .then((json) => {
@@ -25,6 +24,11 @@ const getWeather = (zipcode, countryCode) => {
         })
     })
 };
+
+postLocation = (city) => {
+    const location = document.querySelector(".location"); 
+    location.innerHTML = `Thanks for checking in from ${city}.`
+ }
 
 postForecast = (json) => {
     const weatherBox = document.querySelector(".weather-box");
@@ -38,13 +42,14 @@ postForecast = (json) => {
     let tempLo = document.createElement("p");
     let feelsLike = document.createElement("p");
 
-    currentDate.innerHTML = `Weather requested at ${json.current.dt}`;
+    currentDate.innerHTML = `It is ${new Date}`;
     city.innerHTML = `Timezone: ${json.timezone}`;
     temp.innerHTML = `Current temperature: ${json.current.temp}`;
-    currentConditions.innerHTML = `Currently it is: ${json.current.weather[0].main}, with ${json.current.weather[0].description}`;
+    currentConditions.innerHTML = `Currently the forecast is: ${json.current.weather[0].main}, with ${json.current.weather[0].description}`;
     tempHi.innerHTML = `The high today is ${json.daily[0].temp.max}`;
     tempLo.innerHTML = `The low today is ${json.daily[0].temp.min}`;
     feelsLike.innerHTML = `During the day, it will feel around ${json.daily[0].feels_like}`;
 
     weatherBox.append(currentDate, city, temp, currentConditions);
 }
+
