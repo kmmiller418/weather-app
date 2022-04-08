@@ -57,9 +57,10 @@ header h1 {
 .future-forecast{
     margin-left: 2em;
     width: 50%;
+    text-align: center;
 }
 
-.future-forecast p:nth-child(4), .future-forecast p:nth-child(7) {
+.future-forecast p:nth-child(5), .future-forecast p:nth-child(9) {
     border-bottom: 2px solid black;
     padding-bottom: 1em;
 }

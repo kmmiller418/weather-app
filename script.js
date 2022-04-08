@@ -8,7 +8,7 @@ submit.addEventListener("click", () => {
       alert("please enter a location")
       return null;
   }
-  
+
   getWeather(zipcode, countryCode);
 });
 
@@ -80,13 +80,14 @@ post3DayForecast = (json) => {
         let hi = document.createElement("p");
         let lo = document.createElement("p");
         let condition = document.createElement("p");
+        let img = document.createElement("img");
       
         hi.innerHTML = `Day ${i} High: ${json.daily[i].temp.max} &#176F`;
         lo.innerHTML = `Day ${i} Low: ${json.daily[i].temp.min} &#176F`;
-        condition.innerHTML = `The weather will be: ${json.daily[i].weather[0].main}, with ${json.daily[i].weather[0].description}`;
-    
-        futureForecast.append(hi, lo, condition);
+        condition.innerHTML = `The forecast calls for ${json.daily[i].weather[0].description}`;
+        img.src = `http://openweathermap.org/img/wn/${json.daily[i].weather[0].icon}@2x.png`
+        futureForecast.append(img, hi, lo, condition);
     }
   
-
+    futureForecast.style.border = "2px solid black";
 }
