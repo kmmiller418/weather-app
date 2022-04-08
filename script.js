@@ -3,6 +3,12 @@ const submit = document.querySelector(".getForecast");
 submit.addEventListener("click", () => {
   const zipcode = document.querySelector("#zipcode").value;
   const countryCode = document.querySelector("#countryCode").value;
+
+  if (zipcode == "" || countryCode == "") {
+      alert("please enter a location")
+      return null;
+  }
+  
   getWeather(zipcode, countryCode);
 });
 
