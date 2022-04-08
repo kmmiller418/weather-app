@@ -13,14 +13,16 @@
     </header>
     <main>
       <div class="user-input">
-        <form>
-          <label for="location">Enter zip code</label>
-          <input id="location" name="location" type="text" pattern="[0-9]{5}" />
+          <label for="zipcode">Enter zip code</label>
+          <input id="zipcode" name="zipcode" type="text"/>
+          <label for="countryCode">Enter country code in <a href="https://www.iso.org/obp/ui/#search">ISO format</a></label>
+          <input id="countryCode" name="countryCode" type="text"/>
           <button class="getForecast">Get Forecast</button>
-        </form>
       </div>
 
-      <div class="weather-box"></div>
+      <div class="weather-box">
+          <p></p>
+      </div>
     </main>
     <script src="script.js"></script>
   </body>
