@@ -19,12 +19,13 @@ const getWeather = (zipcode, countryCode) => {
     })
     .then((coordinates) => {
       fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=1eba33578583cc2cb757872032783084&units=imperial`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=hourly&appid=1eba33578583cc2cb757872032783084&units=imperial`
       )
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
-          postForecast(json);
+            console.log(json);
+            postForecast(json);
+            post3DayForecast(json);
         });
     });
 };
@@ -36,7 +37,7 @@ postLocation = (city) => {
 
 postForecast = (json) => {
   const weatherBox = document.querySelector(".weather-box");
-  weatherBox.innerHTML = "Your forecast for today is:";
+  weatherBox.innerHTML = `<h3>Your forecast for today is:</h3>`;
 
   let currentDate = document.createElement("p");
   let city = document.createElement("p");
@@ -48,11 +49,38 @@ postForecast = (json) => {
 
   currentDate.innerHTML = `It is ${new Date()}`;
   city.innerHTML = `Timezone: ${json.timezone}`;
-  temp.innerHTML = `Current temperature: ${json.current.temp}`;
+  temp.innerHTML = `Current temperature: ${json.current.temp} &#176F`;
   currentConditions.innerHTML = `Currently the forecast is: ${json.current.weather[0].main}, with ${json.current.weather[0].description}`;
-  tempHi.innerHTML = `The high today is ${json.daily[0].temp.max}`;
-  tempLo.innerHTML = `The low today is ${json.daily[0].temp.min}`;
-  feelsLike.innerHTML = `During the day, it will feel around ${json.daily[0].feels_like}`;
+  tempHi.innerHTML = `The high today is ${json.daily[0].temp.max} &#176F`;
+  tempLo.innerHTML = `The low today is ${json.daily[0].temp.min} &#176F`;
+  feelsLike.innerHTML = `During the day, it will feel around ${json.daily[0].feels_like.day} &#176F`;
 
-  weatherBox.append(currentDate, city, temp, currentConditions);
+  weatherBox.append(
+    currentDate,
+    city,
+    temp,
+    currentConditions,
+    tempHi,
+    tempLo,
+    feelsLike
+  );
 };
+
+post3DayForecast = (json) => {
+    const futureForecast = document.querySelector(".future-forecast");
+    futureForecast.innerHTML = `<h3>Your three day forecast is:</h3>`;
+
+    for (i = 1; i < 4; i++) {
+        let hi = document.createElement("p");
+        let lo = document.createElement("p");
+        let condition = document.createElement("p");
+      
+        hi.innerHTML = `Day ${i} High: ${json.daily[i].temp.max} &#176F`;
+        lo.innerHTML = `Day ${i} Low: ${json.daily[i].temp.min} &#176F`;
+        condition.innerHTML = `The weather will be: ${json.daily[i].weather[0].main}, with ${json.daily[i].weather[0].description}`;
+    
+        futureForecast.append(hi, lo, condition);
+    }
+  
+
+}
