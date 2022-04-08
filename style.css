@@ -19,6 +19,10 @@ header h1 {
 }
 
 .user-input input {
+    background-color: #d3eaf2;
+    border: 1px solid #51abcb;
+    border-radius: 2px;
+    height: 1.5em;
     width: 15%;
 }
 
