@@ -1,0 +1,17 @@
+footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 5em;
+    margin-bottom: 0;
+    width: 100%;
+    height: 3em;
+    background-color: thistle;
+    font-size: 14px;
+    color: black;
+  }
+  
+  footer a {
+    color: navy;
+  }

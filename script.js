@@ -17,7 +17,7 @@ const getWeather = (zipcode, countryCode) => {
       postLocation(json.name);
       return { lat, lon, name };
     })
-    .then((...coordinates) => {
+    .then((coordinates) => {
       fetch(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=1eba33578583cc2cb757872032783084&units=imperial`
       )
