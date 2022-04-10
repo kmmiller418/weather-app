@@ -7,15 +7,24 @@ body {
 }
 
 header {
+    background-image: url(https://cdn3.vectorstock.com/i/1000x1000/02/57/clouds-background-vector-70257.jpg);
     width: 100%;
+    height: 12rem;
     padding-left: 10%;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 header h1 {
     font-size: 48px;
     color: #21130d;
     margin-bottom: 0em;
+    text-shadow: 2px 1px 2px white;
+}
+
+.user-input {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
 }
 
 .user-input input {
@@ -23,30 +32,48 @@ header h1 {
     border: 1px solid #51abcb;
     border-radius: 2px;
     height: 1.5em;
-    width: 15%;
+    width: 30%;
+    margin-right: .45em;
 }
 
 .user-input button {
-    background-color: #2596be;
+    background-color: #145369;
     color: white;
     border: none;
     border-radius: 6px;
     height: 2em;
     cursor: pointer;
+    box-shadow: 1px 1px;
+    margin-top: .5em;
+    margin-right: 1.5em;
+    width: 30%;
 }
 
 .user-input button:hover {
-    background-color: #145369;
+    background-color: #2596be;
 }
 
 .location {
+    justify-content: flex-start;
     text-align: center;
+    font-size: 24px;
+    margin-top: 0;
+}
+
+h3.location {
+    margin-bottom: 2em;
 }
 
 .forecast{
     display: flex;
     border: 2px #76442e;
-    margin-bottom: 20;
+    border-radius: 4%;
+    margin-bottom: 20%;
+}
+
+.forecast span {
+    font-size: 24px;
+    color: #51abcb;
 }
 
 .weather-box{
@@ -54,17 +81,37 @@ header h1 {
     margin-right: 2em;
 }
 
+.weather-alerts {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-top: 4em;
+    border: 2px solid black;
+    padding: 2em;
+    width: 70%;
+    color: rgb(206, 22, 22);
+}
+
 .future-forecast{
+    background-color: #51aacbb6;
     margin-left: 2em;
-    width: 50%;
+    width: 35%;
     text-align: center;
 }
 
-.future-forecast p:nth-child(5), .future-forecast p:nth-child(9) {
+.future-forecast h3 {
+    background-color: #d3eaf2;
+    padding: 2em;
+}
+
+.future-forecast p:nth-child(4), .future-forecast p:nth-child(7) {
     border-bottom: 2px solid black;
     padding-bottom: 1em;
 }
 
+.future-forecast span {
+    color: black;
+}
 
 footer {
     align-self: flex-end;
@@ -77,6 +124,7 @@ footer {
     background-color: rgb(37, 150, 190);
     font-size: 14px;
     color: black;
+    
   }
   
 
